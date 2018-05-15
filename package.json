@@ -1,7 +1,7 @@
 {
     "name": "@kmdavis/cancelable-promise",
     "description": "Promise-like class that adds cancelability to ES6 Promises.",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "keywords": [
         "cancelable",
         "promise"
