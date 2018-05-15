@@ -1,0 +1,44 @@
+{
+    "name": "@kmdavis/cancelable-promise",
+    "description": "Promise-like class that adds cancelability to ES6 Promises.",
+    "version": "0.1.0",
+    "keywords": [
+        "cancelable",
+        "promise"
+    ],
+    "repository": "github:kmdavis/cancelable-promise",
+    "homepage": "https://github.com/kmdavis/cancelable-promise",
+    "bugs": "https://github.com/kmdavis/cancelable-promise/issues",
+    "license": "BSD",
+    "author": "Kevan Davis <kevan.davis@me.com>",
+    "module": "src/index.js",
+    "main": "dist/cancelable-promise.js",
+    "scripts": {
+        "build": "mkdir -p dist && babel src/index.js --out-file dist/cancelable-promise.js",
+        "test": "jest"
+    },
+    "devDependencies": {
+        "babel": "^6.23.0",
+        "babel-cli": "^6.26.0",
+        "babel-eslint": "^8.2.3",
+        "babel-jest": "^22.4.3",
+        "babel-plugin-transform-es2015-modules-umd": "^6.24.1",
+        "babel-polyfill": "^6.26.0",
+        "babel-preset-env": "^1.7.0",
+        "chai": "^4.1.2",
+        "eslint": "^4.19.1",
+        "eslint-config-airbnb": "^16.1.0",
+        "eslint-plugin-import": "^2.10.0",
+        "eslint-plugin-promise": "^3.7.0",
+        "jest": "^22.4.3",
+        "sinon": "^5.0.7",
+        "sinon-chai": "^3.0.0",
+        "sinon-test": "^2.1.3"
+    },
+    "jest": {
+        "setupTestFrameworkScriptFile": "./setup_tests",
+        "transform": {
+            "^.+\\.js$": "babel-jest"
+        }
+    }
+}

@@ -1,0 +1,17 @@
+{
+    "presets": [[
+        "env", {
+            "targets": {
+                "browsers": ["last 2 Chrome versions"]
+            }
+        }
+    ]],
+    "plugins": [
+        ["transform-es2015-modules-umd", {
+            "exactGlobals": true,
+            "globals": {
+                "index": "CancelablePromise"
+            }
+        }]
+    ]
+}
