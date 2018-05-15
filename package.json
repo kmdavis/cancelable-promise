@@ -36,6 +36,7 @@
         "sinon-test": "^2.1.3"
     },
     "jest": {
+        "coveragePathIgnorePatterns": ["setup_tests.js"],
         "setupTestFrameworkScriptFile": "./setup_tests",
         "transform": {
             "^.+\\.js$": "babel-jest"
