@@ -3,6 +3,45 @@ import CancelablePromise from "..";
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 50;
 
 describe("CancelablePromise", () => {
+    describe("#constructor", () => {
+        it("should return a passed in CancelablePromise", () => {
+            const p1 = new CancelablePromise();
+            const p2 = new CancelablePromise(p1);
+            expect(p1).to.equal(p2);
+        });
+
+        it("should wrap a passed in Promise", (done) => {
+            const p1 = Promise.resolve("HI");
+            const p2 = new CancelablePromise(p1);
+            const fn = sinon.spy();
+            p2.then(fn);
+            setTimeout(() => {
+                expect(fn).to.have.been.calledWith("HI");
+                done();
+            });
+        });
+
+        it("should wrap a passed in Function", (done) => {
+            const p1 = new CancelablePromise(resolve => setTimeout(() => resolve("HI")));
+            const fn = sinon.spy();
+            p1.then(fn);
+            setTimeout(() => {
+                expect(fn).to.have.been.calledWith("HI");
+                done();
+            }, 15);
+        });
+
+        it("should wrap a passed in value", (done) => {
+            const p1 = new CancelablePromise("HI");
+            const fn = sinon.spy();
+            p1.then(fn);
+            setTimeout(() => {
+                expect(fn).to.have.been.calledWith("HI");
+                done();
+            }, 15);
+        });
+    });
+
     describe("#then", () => {
         it("should call onResolved when Promise resolved if not canceled", (done) => {
             const fn = sinon.spy();
@@ -222,10 +261,16 @@ describe("CancelablePromise", () => {
     });
 
     describe(".all", () => {
-        it("should return a CancelablePromise version of Promise.all", sinon.test(function () {
+        it("should return a CancelablePromise version of Promise.all", sinon.test(function (done) {
             this.spy(Promise, "all");
             expect(CancelablePromise.all(["a", "b"])).to.be.instanceof(CancelablePromise);
             expect(Promise.all).to.have.been.calledWith(["a", "b"]);
+            const fn = sinon.spy();
+            CancelablePromise.all(["a", "b"]).then(fn);
+            setTimeout(() => {
+                expect(fn).to.have.been.calledWith(["a", "b"]);
+                done();
+            });
         }));
 
         it("should cancel if any children are canceled", function (done) {
