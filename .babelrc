@@ -1,11 +1,5 @@
 {
-    "presets": [[
-        "env", {
-            "targets": {
-                "browsers": ["last 2 Chrome versions"]
-            }
-        }
-    ]],
+    "presets": ["env"],
     "plugins": [
         ["transform-es2015-modules-umd", {
             "exactGlobals": true,
